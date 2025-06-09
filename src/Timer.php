@@ -11,8 +11,11 @@ namespace DecodeLabs\Kairos;
 
 use DecodeLabs\Nuance\Dumpable;
 use DecodeLabs\Nuance\Entity\NativeObject as NuanceEntity;
+use Stringable;
 
-class Timer implements Dumpable
+class Timer implements
+    Stringable,
+    Dumpable
 {
     public readonly float $start;
     private(set) ?float $end = null;
@@ -54,7 +57,7 @@ class Timer implements Dumpable
     public function toNuanceEntity(): NuanceEntity
     {
         $entity = new NuanceEntity($this);
-        $entity->itemName = number_format($this->time * 1000, 2) . ' ms';
+        $entity->itemName = $this->__toString();
 
         $entity->meta = [
             'start' => number_format($this->start, 6),
@@ -63,5 +66,18 @@ class Timer implements Dumpable
         ];
 
         return $entity;
+    }
+
+    public function __toString(): string
+    {
+        if($this->time > 60) {
+            return number_format($this->time / 60, 2) . ' m';
+        }
+
+        if($this->time > 1) {
+            return number_format($this->time, 3) . ' s';
+        }
+
+        return number_format($this->time * 1000, 2) . ' ms';
     }
 }
