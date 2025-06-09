@@ -70,14 +70,16 @@ class Timer implements
 
     public function __toString(): string
     {
-        if($this->time > 60) {
-            return number_format($this->time / 60, 2) . ' m';
-        }
+        $time = $this->time;
 
-        if($this->time > 1) {
-            return number_format($this->time, 3) . ' s';
+        if ($time > 60) {
+            return number_format($time / 60, 0) . ':' . number_format($time % 60);
+        } elseif ($time > 1) {
+            return number_format($time, 3) . ' s';
+        } elseif ($time > 0.0005) {
+            return number_format($time * 1000, 2) . ' ms';
+        } else {
+            return number_format($time * 1000, 5) . ' ms';
         }
-
-        return number_format($this->time * 1000, 2) . ' ms';
     }
 }
