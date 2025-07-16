@@ -18,7 +18,7 @@ class Timer implements
     Dumpable
 {
     public readonly float $start;
-    private(set) ?float $end = null;
+    public private(set) ?float $end = null;
 
     public float $time {
         get => ($this->end ?? microtime(true)) - $this->start;
@@ -35,7 +35,8 @@ class Timer implements
     }
 
 
-    public function isRunning(): bool {
+    public function isRunning(): bool
+    {
         return $this->end === null;
     }
 
