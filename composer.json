@@ -10,15 +10,27 @@
         } ],
     "require": {
         "php": "^8.4",
-        "decodelabs/nuance": "^0.1"
+
+        "decodelabs/coercion": "^0.3.5",
+        "decodelabs/exceptional": "^0.6.3",
+        "decodelabs/nuance": "^0.1",
+
+        "nesbot/carbon": "^3.10.2"
     },
     "require-dev": {
+        "decodelabs/lucid": "^0.7",
         "decodelabs/phpstan-decodelabs": "^0.7.0"
+    },
+    "conflict": {
+        "decodelabs/lucid": "<0.6"
     },
     "autoload": {
         "psr-4": {
-            "DecodeLabs\\Kairos\\": "src/"
-        }
+            "DecodeLabs\\Kairos\\": "src/Kairos/"
+        },
+        "classmap": [
+            "src/Lucid/"
+        ]
     },
     "extra": {
         "branch-alias": {
