@@ -18,7 +18,7 @@
         "nesbot/carbon": "^3.10.2"
     },
     "require-dev": {
-        "decodelabs/lucid": "^0.7",
+        "decodelabs/lucid": "^0.8",
         "decodelabs/phpstan-decodelabs": "^0.7.0"
     },
     "conflict": {

@@ -14,7 +14,6 @@ use DecodeLabs\Exceptional;
 use DecodeLabs\Kairos\TimeOfDay as TimeOfDayInterface;
 use DecodeLabs\Lucid\Processor;
 use DecodeLabs\Lucid\ProcessorTrait;
-use DecodeLabs\Lucid\Sanitizer;
 
 /**
  * @implements Processor<TimeOfDayInterface>
@@ -27,11 +26,6 @@ class TimeOfDay implements Processor
     use ProcessorTrait;
 
     public const array OutputTypes = ['Kairos:TimeOfDay', TimeOfDayInterface::class];
-
-    public function __construct(
-        protected Sanitizer $sanitizer
-    ) {
-    }
 
     public function coerce(
         mixed $value
