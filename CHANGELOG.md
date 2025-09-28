@@ -5,7 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
---
+- Converted Timer to use hrtime()
+- Added MicroTime encapsulation
+- Added Clock interface extending PSR20
+- Implements System, Monotonic and Fixed clocks
+- Ported TimeZone and TimeZoneLocation from Cosmos
+- Added Nuance dump support to TimeZone
+- Added TimeZoneType enum
 
 ---
 

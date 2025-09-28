@@ -10,6 +10,7 @@
         } ],
     "require": {
         "php": "^8.4",
+        "psr/clock": "^1.0",
 
         "decodelabs/coercion": "^0.3.5",
         "decodelabs/exceptional": "^0.6.3",
@@ -23,6 +24,9 @@
     },
     "conflict": {
         "decodelabs/lucid": "<0.6"
+    },
+    "provide": {
+        "psr/clock-implementation": "1.0"
     },
     "autoload": {
         "psr-4": {

@@ -17,21 +17,27 @@ class Timer implements
     Stringable,
     Dumpable
 {
-    public readonly float $start;
-    public private(set) ?float $end = null;
+    public readonly MicroTime $start;
+    public private(set) ?MicroTime $end = null;
 
-    public float $time {
-        get => ($this->end ?? microtime(true)) - $this->start;
+    public MicroTime $time {
+        get {
+            $end = $this->end ?? new MicroTime(hrtime());
+            return $end->subtract($this->start);
+        }
     }
 
+    /**
+     * @param int|float|string|array{int,int}|MicroTime|null $start
+     */
     public function __construct(
-        ?float $start = null
+        int|float|string|array|MicroTime|null $start = null
     ) {
         if ($start === null) {
-            $start = microtime(true);
+            $start = hrtime();
         }
 
-        $this->start = $start;
+        $this->start = MicroTime::from($start);
     }
 
 
@@ -42,16 +48,17 @@ class Timer implements
 
 
     /**
+     * @param int|float|string|array{int,int}|MicroTime|null $end
      * @return $this
      */
     public function stop(
-        ?float $end = null
+        int|float|string|array|MicroTime|null $end = null
     ): static {
         if ($end === null) {
-            $end = microtime(true);
+            $end = hrtime();
         }
 
-        $this->end = $end;
+        $this->end = MicroTime::from($end);
         return $this;
     }
 
@@ -61,8 +68,8 @@ class Timer implements
         $entity->itemName = $this->__toString();
 
         $entity->meta = [
-            'start' => number_format($this->start, 6),
-            'end' => $this->end !== null ? number_format($this->end, 6) : null,
+            'start' => $this->start,
+            'end' => $this->end,
             'running' => $this->isRunning(),
         ];
 
@@ -71,16 +78,6 @@ class Timer implements
 
     public function __toString(): string
     {
-        $time = $this->time;
-
-        if ($time > 60) {
-            return number_format($time / 60, 0) . ':' . number_format($time % 60);
-        } elseif ($time > 1) {
-            return number_format($time, 3) . ' s';
-        } elseif ($time > 0.0005) {
-            return number_format($time * 1000, 2) . ' ms';
-        } else {
-            return number_format($time * 1000, 5) . ' ms';
-        }
+        return (string)$this->time;
     }
 }
