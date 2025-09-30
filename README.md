@@ -15,6 +15,8 @@ Kairos provides simple time and date tools for PHP.
 
 ## Installation
 
+This package requires PHP 8.4 or higher.
+
 Install via Composer:
 
 ```bash
