@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package Kairos
- * @license http://opensource.org/licenses/MIT
+ * Kairos
+ * @license https://opensource.org/licenses/MIT
  */
 
 declare(strict_types=1);
