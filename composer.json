@@ -2,7 +2,7 @@
     "name": "decodelabs/kairos",
     "description": "Time and date utilities",
     "type": "library",
-    "keywords": [],
+    "keywords": [ ],
     "license": "MIT",
     "authors": [
         {
@@ -21,7 +21,7 @@
         "nesbot/carbon": "^3.10.2"
     },
     "require-dev": {
-        "decodelabs/chorus": "^0.1",
+        "decodelabs/chorus": ">0",
         "decodelabs/lucid": "^0.8",
         "decodelabs/phpstan-decodelabs": "^0.7.0"
     },
